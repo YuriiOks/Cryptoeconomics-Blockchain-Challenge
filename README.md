@@ -1,5 +1,12 @@
 # 🚀 30-Days Challenge: Mastering Cryptoeconomics & Blockchain
 
+<!-- ![30-Days-GT-Crypto Logo](./assets/images/30-Days-GT-Crypto_Logo_V2_Transparent.png) -->
+![30-Days-GT-Crypto Logo](./assets/images/30-Days-GT-Crypto_Logo_V1_Beige.png)
+
+
+Welcome to the 30-days Cryptoeconomics & Blockchain Technology Challenge! This repository will host all code, resources, and documentation for the challenge.
+
+
 Welcome to the 30-day Cryptoeconomics & Blockchain Technology Challenge! This repository will host all the code, resources, and documentation for the challenge.
 
 ## 📚 Learning Path
