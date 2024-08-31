@@ -1,4 +1,4 @@
-# 🚀 30-Day Challenge: Mastering Cryptoeconomics & Blockchain
+# 🚀 30-Days Challenge: Mastering Cryptoeconomics & Blockchain
 
 Welcome to the 30-day Cryptoeconomics & Blockchain Technology Challenge! This repository will host all the code, resources, and documentation for the challenge.
 
