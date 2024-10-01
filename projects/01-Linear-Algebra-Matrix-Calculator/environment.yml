@@ -1,0 +1,14 @@
+# Environment configuration for 01-Linear-Algebra-Matrix-Calculator
+name: linear-algebra
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11.5
+  - numpy
+  - matplotlib
+  - pandas
+  - jupyterlab
+  - sympy
+  - seaborn
+  - jupyter
+  
