@@ -23,6 +23,11 @@ A summary of the topics covered during the challenge:
 - `docs/`: Detailed documentation for setup, milestones, and overviews.
 - `wiki/`: Additional information and notes.
 
+## 📘 LaTeX Template: MathsCodeBook
+
+This repository makes use of the [MathsCodeBook](https://github.com/YuriODev/MathsCodeBook) LaTeX template for documenting mathematical concepts and research. It is highly recommended for generating professional math books, research papers, and detailed notes with code snippets.
+
+
 ## 🛠️ Installation Instructions
 1. Clone the repository.
 2. Install dependencies with `pip install -r requirements.txt`.
