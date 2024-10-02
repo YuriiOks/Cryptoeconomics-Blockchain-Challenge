@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 def add_vectors(v1, v2):
@@ -41,13 +42,122 @@ def cross_product(v1, v2):
     return np.cross(v1, v2)
 
 
-# Example usage (to be deleted in production code):
-if __name__ == "__main__":
-    vector_a = np.array([1, 2, 3])
-    vector_b = np.array([4, 5, 6])
-    print(f"Vector A: {vector_a}")
-    print(f"Vector B: {vector_b}")
-    print(f"Add Vectors: {add_vectors(vector_a, vector_b)}")
-    print(f"Scalar Multiply: {scalar_multiply(vector_a, 2)}")
-    print(f"Dot Product: {dot_product(vector_a, vector_b)}")
-    print(f"Cross Product: {cross_product(vector_a, vector_b)}")
+def plot_vectors_2d(vectors, labels, colors=None):
+    """
+    Plots 2D vectors on a Cartesian plane.
+    :param vectors: List of vectors to be plotted (each should be a 2-element numpy array)
+    :param labels: Labels for the vectors
+    :param colors: Optional list of colors for each vector
+    """
+
+    plt.figure(figsize=(8, 6))
+    for i, vector in enumerate(vectors):
+        plt.quiver(0, 0, vector[0], vector[1], angles='xy', scale_units='xy', scale=1, color=colors[i] if colors else 'b')
+        plt.text(vector[0], vector[1], labels[i], ha='center', va='center', color=colors[i] if colors else 'b')
+    plt.xlabel('X')
+    plt.ylabel('Y')
+    plt.title('2D Vector Plot')
+    plt.grid(True)
+    plt.show()
+
+
+def plot_vectors_3d(vectors, labels, colors=None):
+    """
+    Plots 3D vectors in a 3D Cartesian space.
+    :param vectors: List of vectors to be plotted (each should be a 3-element numpy array)
+    :param labels: Labels for the vectors
+    :param colors: Optional list of colors for each vector
+    """
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    for i, vector in enumerate(vectors):
+        ax.quiver(0, 0, 0, vector[0], vector[1], vector[2], color=colors[i] if colors else 'b')
+        ax.text(vector[0], vector[1], vector[2], labels[i], ha='center', va='center', color=colors[i] if colors else 'b')
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
+    ax.set_title('3D Vector Plot')
+
+
+def visualize_matrix_transformation(matrix, vector):
+    """
+    Visualizes the effect of a matrix transformation on a 2D vector.
+    :param matrix: 2x2 numpy array representing the transformation matrix
+    :param vector: 2-element numpy array representing the vector
+    """
+    transformed_vector = np.dot(matrix, vector)
+    plot_vectors_2d([vector, transformed_vector], ['Original', 'Transformed'], ['r', 'g'])
+
+
+def normalize_vector(vector):
+    """
+    Normalizes a vector to a unit vector.
+    """
+    norm = np.linalg.norm(vector)
+    return vector / norm
+
+
+def subtract_vectors(v1, v2):
+    """
+    Subtracts vector v2 from v1.
+    """
+    return np.subtract(v1, v2)
+
+
+def rotate_vector(vector, angle_degrees):
+    """
+    Rotates a 2D vector by a given angle in degrees.
+    """
+    angle_radians = np.deg2rad(angle_degrees)
+    rotation_matrix = np.array([[np.cos(angle_radians), -np.sin(angle_radians)],
+                                [np.sin(angle_radians),  np.cos(angle_radians)]])
+    return np.dot(rotation_matrix, vector)
+
+
+def vector_projection(u, v):
+    """
+    Computes the projection of vector u onto vector v.
+    """
+    scalar_proj = np.dot(u, v) / np.dot(v, v)
+    return scalar_proj * v
+
+
+def plot_vectors_with_angle(u, v):
+    """
+    Plots two vectors and displays the angle between them.
+    """
+    import matplotlib.pyplot as plt
+    origin = [0, 0]
+    plt.quiver(*origin, u[0], u[1], color='r', angles='xy', scale_units='xy', scale=1, label='Vector u')
+    plt.quiver(*origin, v[0], v[1], color='b', angles='xy', scale_units='xy', scale=1, label='Vector v')
+
+    # Compute angle
+    dot_prod = np.dot(u, v)
+    cos_theta = dot_prod / (np.linalg.norm(u) * np.linalg.norm(v))
+    theta_rad = np.arccos(cos_theta)
+    theta_deg = np.degrees(theta_rad)
+    
+    plt.title(f"Angle between vectors: {theta_deg:.2f} degrees")
+    plt.legend()
+    plt.grid(True)
+    plt.xlim(-5, 10)
+    plt.ylim(-5, 10)
+    plt.show()
+
+
+def plot_vector_projection(u, v):
+    """
+    Plots vectors u, v, and the projection of u onto v.
+    """
+    import matplotlib.pyplot as plt
+    origin = np.array([0, 0])
+    plt.figure(figsize=(8,6))
+    plt.quiver(*origin, u[0], u[1], color='r', angles='xy', scale_units='xy', scale=1, label='Vector u')
+    plt.quiver(*origin, v[0], v[1], color='b', angles='xy', scale_units='xy', scale=1, label='Vector v')
+    proj = vector_projection(u, v)
+    plt.quiver(*origin, proj[0], proj[1], color='g', angles='xy', scale_units='xy', scale=1, label='Projection of u onto v')
+    plt.legend()
+    plt.grid(True)
+    plt.xlim(-1, max(u[0], v[0], proj[0]) + 2)
+    plt.ylim(-1, max(u[1], v[1], proj[1]) + 2)
+    plt.show()
